@@ -36,6 +36,8 @@ namespace ProAgil.WebAPI
                
                 );
             services.AddControllers();
+            services.AddCors();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ProAgil.WebAPI", Version = "v1" });
@@ -58,6 +60,8 @@ namespace ProAgil.WebAPI
 
             app.UseAuthorization();
 
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+            
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
